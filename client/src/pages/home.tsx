@@ -30,7 +30,7 @@ export default function Home() {
       </div>
 
       <footer className="py-6 text-center text-zinc-500 text-sm">
-        <p>Powered by AI • Данные из Кинопоиска</p>
+        <p>Сделано с ❤️ для любителей кино</p>
       </footer>
     </div>
   );
