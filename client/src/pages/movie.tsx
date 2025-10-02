@@ -5,6 +5,8 @@ import { Popcorn } from 'lucide-react';
 import MovieCard from '@/components/MovieCard';
 import LoadingSkeleton from '@/components/LoadingSkeleton';
 import ErrorMessage from '@/components/ErrorMessage';
+import { usePageMeta } from '@/hooks/usePageMeta';
+import { MovieStructuredData } from '@/components/StructuredData';
 
 interface Movie {
   id: number;
@@ -100,6 +102,25 @@ export default function Movie() {
     }
   }, [data, currentMovie]);
 
+  // Dynamic SEO meta tags
+  const movieTitle = currentMovie?.movie?.name 
+    ? `${currentMovie.movie.name} - Фильм под настроение "${currentMood}" | Mood2movie`
+    : `Подбор фильма под настроение "${currentMood}" | Mood2movie`;
+  
+  const movieDescription = currentMovie?.movie?.description
+    ? `${currentMovie.movie.name} (${currentMovie.movie.year}). ${currentMovie.movie.description.slice(0, 150)}... Рейтинг: ${currentMovie.movie.rating?.kp?.toFixed(1) || 'N/A'}. Смотрите лучшие фильмы под ваше настроение на Mood2movie!`
+    : `Искусственный интеллект подобрал идеальный фильм под настроение "${currentMood}". Персонализированные рекомендации от Кинопоиска с высоким рейтингом.`;
+
+  const movieKeywords = currentMovie?.movie?.genres
+    ? `${currentMood}, ${currentMovie.movie.genres.map(g => g.name).join(', ')}, ${currentMovie.movie.name}, кино ${currentMovie.movie.year}, фильмы онлайн, что посмотреть`
+    : `${currentMood}, подбор фильмов, кино по настроению, рекомендации фильмов`;
+
+  usePageMeta({
+    title: movieTitle,
+    description: movieDescription,
+    keywords: movieKeywords
+  });
+
   // Mutation for getting another movie
   const getAnotherMovie = useMutation({
     mutationFn: async () => {
@@ -192,24 +213,27 @@ export default function Movie() {
   }
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <header className="py-6 px-4">
-        <div className="flex items-center justify-center gap-3">
-          <Popcorn className="w-8 h-8 md:w-10 md:h-10 text-indigo-500" />
-          <h1 className="text-3xl md:text-4xl font-bold text-white cursor-pointer" onClick={() => setLocation('/')} data-testid="text-logo">
-            Mood2movie
-          </h1>
+    <>
+      {currentMovie?.movie && <MovieStructuredData movie={currentMovie.movie} />}
+      <div className="min-h-screen bg-background flex flex-col">
+        <header className="py-6 px-4">
+          <div className="flex items-center justify-center gap-3">
+            <Popcorn className="w-8 h-8 md:w-10 md:h-10 text-indigo-500" />
+            <h1 className="text-3xl md:text-4xl font-bold text-white cursor-pointer" onClick={() => setLocation('/')} data-testid="text-logo">
+              Mood2movie
+            </h1>
+          </div>
+        </header>
+        <div className="flex-1 flex items-center justify-center px-4 py-12">
+          <MovieCard
+            movie={currentMovie.movie}
+            onChangeMovie={handleChangeMovie}
+            onChangeMood={handleChangeMood}
+            onWatch={handleWatch}
+            isLoading={getAnotherMovie.isPending}
+          />
         </div>
-      </header>
-      <div className="flex-1 flex items-center justify-center px-4 py-12">
-        <MovieCard
-          movie={currentMovie.movie}
-          onChangeMovie={handleChangeMovie}
-          onChangeMood={handleChangeMood}
-          onWatch={handleWatch}
-          isLoading={getAnotherMovie.isPending}
-        />
       </div>
-    </div>
+    </>
   );
 }

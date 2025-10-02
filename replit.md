@@ -103,3 +103,43 @@ Preferred communication style: Simple, everyday language.
 - Zod for runtime validation and schema definitions
 - drizzle-zod for database schema validation
 - Shared TypeScript types between client and server
+
+### SEO Optimization
+
+**Meta Tags Implementation:**
+- Unique title tags for each page optimized for Yandex
+- Dynamic meta descriptions with movie details and mood context
+- Comprehensive keyword optimization for Russian cinema queries
+- Open Graph tags for social media sharing
+- Twitter Card metadata
+- Canonical URLs for proper indexing
+
+**Structured Data (Schema.org):**
+- WebSite schema with SearchAction on homepage
+- Movie schema with aggregate ratings on film pages
+- JSON-LD format for better Yandex comprehension
+
+**SEO Content:**
+- SEO-optimized text blocks on homepage targeting keywords:
+  - "подбор фильмов" (movie selection)
+  - "кино под настроение" (movies by mood)
+  - "выбрать кино на вечер" (choose movie for evening)
+  - "какой фильм посмотреть" (which movie to watch)
+  - "лучшие фильмы" (best movies)
+- Content strategically placed after mood selection grid
+- Bold emphasis on key phrases for better visibility
+
+**Dynamic SEO:**
+- `usePageMeta` hook for real-time meta tag updates
+- Movie-specific titles including film name, year, and mood
+- Descriptions incorporating movie synopsis and Kinopoisk ratings
+- Auto-generated keywords from movie genres and mood context
+
+**Recent Changes (October 2, 2025):**
+- Added comprehensive SEO optimization for Yandex
+- Implemented structured data with Schema.org markup
+- Created dynamic meta tag system with usePageMeta hook
+- Added SEO content blocks with targeted keywords
+- Fixed infinite refetch loop in movie recommendation flow
+- Implemented proper duplicate movie exclusion via sessionStorage
+- Added logo to movie pages with home navigation
