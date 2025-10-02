@@ -27,7 +27,14 @@ Preferred communication style: Simple, everyday language.
 
 **Key UI Components:**
 - MoodGrid: Grid of emoji-labeled mood buttons for user selection
-- MovieCard: Displays movie details with poster, metadata, and action buttons
+- MovieCard: Comprehensive movie information display with ALL Kinopoisk API fields:
+  - Hero section with backdrop image (10% opacity, blurred)
+  - All 6 rating systems with vote counts and color-coded icons
+  - Complete cast & crew across 6 professions (directors, actors, writers, producers, composers, operators)
+  - Financial data (budget, box office collections worldwide)
+  - All premiere dates (world, Russia, digital releases)
+  - Professional lucide icons (no emojis)
+  - Sectioned layout with separators for readability
 - LoadingSkeleton: Animated placeholder during data fetching
 - ErrorMessage: User-friendly error handling with retry capability
 
@@ -84,7 +91,15 @@ Preferred communication style: Simple, everyday language.
    - Purpose: Movie data retrieval and search
    - Authentication: `X-API-KEY` header
    - Features used: Genre-based filtering, rating ranges, pagination
-   - Data returned: Movie metadata including title, year, poster, rating, genres, description, runtime
+   - **Complete Data Display:** ALL available Kinopoisk API fields are displayed:
+     - All titles: name, alternativeName, enName, type, status, slogan
+     - All descriptions: description, shortDescription
+     - All media: poster, backdrop (blurred background)
+     - All 6 rating systems with vote counts: KP, IMDb, TMDB, Film Critics, Russian Critics, Await
+     - All classifications: year, movieLength, countries, genres, ageRating, ratingMpaa
+     - All 6 cast/crew professions: directors, actors, writers, producers, composers, operators
+     - All financial data: budget, fees (world, Russia, USA)
+     - All premiere dates: world, Russia, digital
 
 **UI Component Library:**
 - Radix UI primitives for accessible components
@@ -168,3 +183,15 @@ Preferred communication style: Simple, everyday language.
 - Configured vercel.json for fullstack deployment with proper routing and CORS
 - Updated all SEO assets (robots.txt, sitemap.xml) to production domain mood2movie.ru
 - Fixed sitemap.xml typo and added environment variable validation
+- **Maximum Movie Information Display (Oct 2, 2025):**
+  - Expanded MovieCard to display ALL 50+ fields from Kinopoisk API
+  - Added all 6 rating systems with vote counts (kp, imdb, tmdb, filmCritics, russianFilmCritics, await)
+  - Implemented complete cast & crew display across 6 professions (directors, actors, writers, producers, composers, operators)
+  - Added financial information (budget, box office: world/Russia/USA)
+  - Integrated all premiere dates (world, Russia, digital)
+  - Added backdrop image as subtle hero background (10% opacity, 20px blur)
+  - Added status badge for release status
+  - Display both ageRating and ratingMpaa simultaneously
+  - Replaced all emojis with professional Lucide icons (Calendar, Clock, MapPin, Star, User, DollarSign, Award, TrendingUp)
+  - Installed @vercel/node package for serverless deployment compatibility
+  - Consistent TypeScript interfaces across shared/schema.ts, MovieCard.tsx, and movie.tsx
