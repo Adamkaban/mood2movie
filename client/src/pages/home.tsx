@@ -20,8 +20,8 @@ export default function Home() {
   return (
     <>
       <WebsiteStructuredData />
-      <div className="min-h-screen bg-background flex flex-col">
-        <div className="flex-1 flex flex-col items-center justify-center px-4 py-12 md:py-16">
+      <div className="bg-background flex flex-col">
+        <div className="flex flex-col items-center justify-center px-4 py-12 md:py-16">
           <div className="w-full max-w-6xl mx-auto space-y-12 md:space-y-16">
             <div className="text-center space-y-4">
               <div className="flex items-center justify-center gap-4">
@@ -52,10 +52,6 @@ export default function Home() {
             </div>
           </div>
         </div>
-
-        <footer className="py-6 text-center text-zinc-500 text-sm">
-          <p>Сделано с ❤️ для любителей кино</p>
-        </footer>
       </div>
     </>
   );
