@@ -5,6 +5,10 @@
   "framework": null,
   "rewrites": [
     {
+      "source": "/api/movie/recommend",
+      "destination": "/api/movie/recommend"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

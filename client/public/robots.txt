@@ -10,7 +10,7 @@ User-agent: Googlebot
 Allow: /
 
 # Sitemap
-Sitemap: https://mood2movie.replit.app/sitemap.xml
+Sitemap: https://mood2movie.ru/sitemap.xml
 
 # Crawl-delay для Яндекса
 User-agent: Yandex
