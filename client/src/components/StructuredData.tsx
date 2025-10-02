@@ -73,7 +73,7 @@ interface MovieStructuredDataProps {
     description?: string;
     year?: number;
     genres?: Array<{ name: string }>;
-    rating?: { kp: number };
+    rating?: { kp?: number };
   };
 }
 

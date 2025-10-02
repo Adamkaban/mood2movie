@@ -12,17 +12,75 @@ interface Movie {
   id: number;
   name: string;
   alternativeName?: string;
+  enName?: string;
   year: number;
+  description?: string;
+  shortDescription?: string;
+  slogan?: string;
+  type?: string;
+  status?: string;
+  
   poster?: {
     url: string;
   };
-  rating?: {
-    kp: number;
+  backdrop?: {
+    url?: string;
   };
-  genres?: Array<{ name: string }>;
-  description?: string;
-  countries?: Array<{ name: string }>;
+  
+  rating?: {
+    kp?: number;
+    imdb?: number;
+    tmdb?: number;
+    filmCritics?: number;
+    russianFilmCritics?: number;
+    await?: number;
+  };
+  votes?: {
+    kp?: number;
+    imdb?: number;
+    tmdb?: number;
+    filmCritics?: number;
+    russianFilmCritics?: number;
+    await?: number;
+  };
+  
   movieLength?: number;
+  ratingMpaa?: string;
+  ageRating?: number;
+  
+  genres?: Array<{ name: string }>;
+  countries?: Array<{ name: string }>;
+  persons?: Array<{
+    id: number;
+    name?: string;
+    photo?: string;
+    profession?: string;
+  }>;
+  
+  budget?: {
+    value?: number;
+    currency?: string;
+  };
+  fees?: {
+    world?: {
+      value?: number;
+      currency?: string;
+    };
+    russia?: {
+      value?: number;
+      currency?: string;
+    };
+    usa?: {
+      value?: number;
+      currency?: string;
+    };
+  };
+  
+  premiere?: {
+    world?: string;
+    russia?: string;
+    digital?: string;
+  };
 }
 
 interface MovieResponse {
