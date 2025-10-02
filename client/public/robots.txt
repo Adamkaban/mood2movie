@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Yandex
+User-agent: Yandex
+Allow: /
+
+# Google
+User-agent: Googlebot
+Allow: /
+
+# Sitemap
+Sitemap: https://mood2movie.replit.app/sitemap.xml
+
+# Crawl-delay для Яндекса
+User-agent: Yandex
+Crawl-delay: 1
