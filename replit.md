@@ -135,6 +135,22 @@ Preferred communication style: Simple, everyday language.
 - Descriptions incorporating movie synopsis and Kinopoisk ratings
 - Auto-generated keywords from movie genres and mood context
 
+### Deployment Architecture
+
+**Vercel Serverless Deployment:**
+- Production domain: mood2movie.ru
+- Serverless API: `/api/movie/recommend.ts` (Vercel Functions)
+- Frontend build: Static assets served from `dist/public`
+- Environment variables: OPENROUTER_API_KEY, KINOPOISK_API_KEY
+- CORS configured for wildcard origin without credentials
+- Environment validation: Automatic API key verification with clear error messages
+
+**Configuration Files:**
+- `vercel.json`: Routes, rewrites, CORS headers, output directory
+- `VERCEL_DEPLOYMENT_GUIDE.md`: Complete deployment instructions with domain setup
+- `client/public/robots.txt`: References production domain sitemap
+- `client/public/sitemap.xml`: All 12 mood pages indexed with mood2movie.ru URLs
+
 **Recent Changes (October 2, 2025):**
 - Added comprehensive SEO optimization for Yandex
 - Implemented structured data with Schema.org markup
@@ -146,6 +162,9 @@ Preferred communication style: Simple, everyday language.
 - Created robots.txt with Yandex and Google bot configuration
 - Implemented sitemap.xml with all 12 mood pages indexed
 - Added bright popcorn-themed SVG favicon
+- Added dismissible advertising banner with localStorage persistence
 - **Vercel Adaptation**: Migrated Express API to serverless functions (/api/movie/recommend.ts)
 - Created comprehensive deployment guide for Vercel with domain setup instructions
 - Configured vercel.json for fullstack deployment with proper routing and CORS
+- Updated all SEO assets (robots.txt, sitemap.xml) to production domain mood2movie.ru
+- Fixed sitemap.xml typo and added environment variable validation
