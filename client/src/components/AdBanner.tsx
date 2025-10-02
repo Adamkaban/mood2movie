@@ -2,6 +2,49 @@ import { useState, useEffect } from "react";
 import { useLocation } from "wouter";
 import { X } from "lucide-react";
 
+interface BannerState {
+  count: number;
+  date: string;
+}
+
+const DELAYS = [3000, 7000, 15000];
+const MAX_SHOWS_PER_DAY = 3;
+const STORAGE_KEY = "adBannerState";
+
+function getTodayDate(): string {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function getBannerState(): BannerState {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (!stored) return { count: 0, date: getTodayDate() };
+    
+    const state: BannerState = JSON.parse(stored);
+    const today = getTodayDate();
+    
+    if (state.date !== today) {
+      return { count: 0, date: today };
+    }
+    
+    return state;
+  } catch {
+    return { count: 0, date: getTodayDate() };
+  }
+}
+
+function setBannerState(count: number): void {
+  const state: BannerState = {
+    count,
+    date: getTodayDate()
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
 export function AdBanner() {
   const [location] = useLocation();
   const [isVisible, setIsVisible] = useState(false);
@@ -11,12 +54,20 @@ export function AdBanner() {
     setIsVisible(false);
     setIsShown(false);
     
+    const state = getBannerState();
+    
+    if (state.count >= MAX_SHOWS_PER_DAY) {
+      return;
+    }
+    
+    const delay = DELAYS[state.count] || DELAYS[DELAYS.length - 1];
+    
     const showTimer = setTimeout(() => {
       setIsShown(true);
       setTimeout(() => {
         setIsVisible(true);
       }, 100);
-    }, 3000);
+    }, delay);
 
     return () => clearTimeout(showTimer);
   }, [location]);
@@ -27,6 +78,8 @@ export function AdBanner() {
     setIsVisible(false);
     setTimeout(() => {
       setIsShown(false);
+      const state = getBannerState();
+      setBannerState(state.count + 1);
     }, 300);
   };
 
