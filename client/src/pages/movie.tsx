@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
+import { Popcorn } from 'lucide-react';
 import MovieCard from '@/components/MovieCard';
 import LoadingSkeleton from '@/components/LoadingSkeleton';
 import ErrorMessage from '@/components/ErrorMessage';
@@ -153,32 +154,62 @@ export default function Movie() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center px-4">
-        <ErrorMessage 
-          message="Не удалось загрузить фильм. Проверьте подключение к интернету или попробуйте выбрать другое настроение." 
-          onRetry={handleRetry} 
-        />
+      <div className="min-h-screen bg-background flex flex-col">
+        <header className="py-6 px-4">
+          <div className="flex items-center justify-center gap-3">
+            <Popcorn className="w-8 h-8 md:w-10 md:h-10 text-indigo-500" />
+            <h1 className="text-3xl md:text-4xl font-bold text-white cursor-pointer" onClick={() => setLocation('/')} data-testid="text-logo">
+              Mood2movie
+            </h1>
+          </div>
+        </header>
+        <div className="flex-1 flex items-center justify-center px-4">
+          <ErrorMessage 
+            message="Не удалось загрузить фильм. Проверьте подключение к интернету или попробуйте выбрать другое настроение." 
+            onRetry={handleRetry} 
+          />
+        </div>
       </div>
     );
   }
 
   if (isLoading || !currentMovie || getAnotherMovie.isPending) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center px-4 py-12">
-        <LoadingSkeleton />
+      <div className="min-h-screen bg-background flex flex-col">
+        <header className="py-6 px-4">
+          <div className="flex items-center justify-center gap-3">
+            <Popcorn className="w-8 h-8 md:w-10 md:h-10 text-indigo-500" />
+            <h1 className="text-3xl md:text-4xl font-bold text-white cursor-pointer" onClick={() => setLocation('/')} data-testid="text-logo">
+              Mood2movie
+            </h1>
+          </div>
+        </header>
+        <div className="flex-1 flex items-center justify-center px-4 py-12">
+          <LoadingSkeleton />
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center px-4 py-12">
-      <MovieCard
-        movie={currentMovie.movie}
-        onChangeMovie={handleChangeMovie}
-        onChangeMood={handleChangeMood}
-        onWatch={handleWatch}
-        isLoading={getAnotherMovie.isPending}
-      />
+    <div className="min-h-screen bg-background flex flex-col">
+      <header className="py-6 px-4">
+        <div className="flex items-center justify-center gap-3">
+          <Popcorn className="w-8 h-8 md:w-10 md:h-10 text-indigo-500" />
+          <h1 className="text-3xl md:text-4xl font-bold text-white cursor-pointer" onClick={() => setLocation('/')} data-testid="text-logo">
+            Mood2movie
+          </h1>
+        </div>
+      </header>
+      <div className="flex-1 flex items-center justify-center px-4 py-12">
+        <MovieCard
+          movie={currentMovie.movie}
+          onChangeMovie={handleChangeMovie}
+          onChangeMood={handleChangeMood}
+          onWatch={handleWatch}
+          isLoading={getAnotherMovie.isPending}
+        />
+      </div>
     </div>
   );
 }
