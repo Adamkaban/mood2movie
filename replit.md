@@ -162,7 +162,7 @@ Preferred communication style: Simple, everyday language.
 - Created robots.txt with Yandex and Google bot configuration
 - Implemented sitemap.xml with all 12 mood pages indexed
 - Added bright popcorn-themed SVG favicon
-- Added dismissible advertising banner with localStorage persistence
+- Added progressive advertising banner with smart frequency control: 3s → 7s → 15s delays, maximum 3 shows per day with local midnight reset
 - **Vercel Adaptation**: Migrated Express API to serverless functions (/api/movie/recommend.ts)
 - Created comprehensive deployment guide for Vercel with domain setup instructions
 - Configured vercel.json for fullstack deployment with proper routing and CORS
