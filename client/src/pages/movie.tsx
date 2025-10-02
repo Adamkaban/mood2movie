@@ -1,65 +1,168 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import MovieCard from '@/components/MovieCard';
 import LoadingSkeleton from '@/components/LoadingSkeleton';
 import ErrorMessage from '@/components/ErrorMessage';
 
+interface Movie {
+  id: number;
+  name: string;
+  alternativeName?: string;
+  year: number;
+  poster?: {
+    url: string;
+  };
+  rating?: {
+    kp: number;
+  };
+  genres?: Array<{ name: string }>;
+  description?: string;
+  countries?: Array<{ name: string }>;
+  movieLength?: number;
+}
+
+interface MovieResponse {
+  movie: Movie;
+  genres: string[];
+}
+
 export default function Movie() {
   const [, setLocation] = useLocation();
-  const [isLoading] = useState(false);
-  const [error] = useState<string | null>(null);
-
-  // todo: remove mock functionality - this is mock data for the prototype
-  const mockMovie = {
-    id: 326,
-    name: 'Побег из Шоушенка',
-    alternativeName: 'The Shawshank Redemption',
-    year: 1994,
-    poster: {
-      url: 'https://image.openmoviedb.com/kinopoisk-images/1599028/0b76b2a0-d4c9-4f9b-b8ff-6f6a8e9b4c1e/orig'
-    },
-    rating: {
-      kp: 9.1
-    },
-    genres: [
-      { name: 'драма' }
-    ],
-    description: 'Бухгалтер Энди Дюфрейн обвинён в убийстве собственной жены и её любовника. Оказавшись в тюрьме под названием Шоушенк, он сталкивается с жестокостью и беззаконием, царящими по обе стороны решётки. Каждый, кто попадает в эти стены, становится их рабом до конца жизни. Но Энди, вооружившись живым умом и доброй душой, отказывается мириться с приговором судьбы и начинает разрабатывать невероятно дерзкий план своего освобождения.',
-    countries: [
-      { name: 'США' }
-    ],
-    movieLength: 142
+  const [currentMood, setCurrentMood] = useState<string>('');
+  const [currentMovie, setCurrentMovie] = useState<MovieResponse | null>(null);
+  
+  // Load excluded IDs synchronously before first render
+  const getExcludedIds = (): number[] => {
+    const stored = sessionStorage.getItem('excludedMovieIds');
+    if (stored) {
+      try {
+        return JSON.parse(stored);
+      } catch (e) {
+        console.error('Failed to parse excluded IDs:', e);
+      }
+    }
+    return [];
   };
 
+  const [excludedIds, setExcludedIds] = useState<number[]>(getExcludedIds());
+  
+  // Get mood from URL
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const mood = params.get('mood');
+    if (mood) {
+      setCurrentMood(mood);
+    } else {
+      setLocation('/');
+    }
+  }, [setLocation]);
+
+  // Fetch movie recommendation (only runs once on mount)
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ['/api/movie/recommend', currentMood],
+    enabled: !!currentMood,
+    retry: 1,
+    queryFn: async () => {
+      const response = await fetch('/api/movie/recommend', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          mood: currentMood,
+          excludeIds: excludedIds,
+        }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch movie');
+      }
+      
+      const result = await response.json() as MovieResponse;
+      
+      // Save to excluded list immediately after fetch
+      if (result.movie?.id && !excludedIds.includes(result.movie.id)) {
+        const newExcludedIds = [...excludedIds, result.movie.id];
+        setExcludedIds(newExcludedIds);
+        sessionStorage.setItem('excludedMovieIds', JSON.stringify(newExcludedIds));
+      }
+      
+      return result;
+    },
+  });
+
+  // Update current movie when initial data loads
+  useEffect(() => {
+    if (data && !currentMovie) {
+      setCurrentMovie(data);
+    }
+  }, [data, currentMovie]);
+
+  // Mutation for getting another movie
+  const getAnotherMovie = useMutation({
+    mutationFn: async () => {
+      const response = await fetch('/api/movie/recommend', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          mood: currentMood,
+          excludeIds: excludedIds,
+        }),
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch movie');
+      }
+      
+      return response.json() as Promise<MovieResponse>;
+    },
+    onSuccess: (newData) => {
+      // Update the displayed movie immediately
+      setCurrentMovie(newData);
+      // Save to excluded list
+      if (newData.movie?.id) {
+        const newExcludedIds = [...excludedIds, newData.movie.id];
+        setExcludedIds(newExcludedIds);
+        sessionStorage.setItem('excludedMovieIds', JSON.stringify(newExcludedIds));
+      }
+    },
+  });
+
   const handleChangeMood = () => {
+    // Clear excluded IDs when changing mood
+    sessionStorage.removeItem('excludedMovieIds');
     setLocation('/');
   };
 
   const handleChangeMovie = () => {
-    console.log('Fetching another movie...');
-    // todo: remove mock functionality - in real app, this would fetch a new movie
+    getAnotherMovie.mutate();
   };
 
   const handleWatch = () => {
-    console.log('Opening movie link...');
-    // todo: remove mock functionality - in real app, this would open kinopoisk link
-    window.open(`https://www.kinopoisk.ru/film/${mockMovie.id}/`, '_blank');
+    if (currentMovie?.movie?.id) {
+      window.open(`https://www.kinopoisk.ru/film/${currentMovie.movie.id}/`, '_blank');
+    }
   };
 
   const handleRetry = () => {
-    console.log('Retrying...');
-    // todo: remove mock functionality - in real app, this would retry the API call
+    refetch();
   };
 
   if (error) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-4">
-        <ErrorMessage message={error} onRetry={handleRetry} />
+        <ErrorMessage 
+          message="Не удалось загрузить фильм. Проверьте подключение к интернету или попробуйте выбрать другое настроение." 
+          onRetry={handleRetry} 
+        />
       </div>
     );
   }
 
-  if (isLoading) {
+  if (isLoading || !currentMovie || getAnotherMovie.isPending) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center px-4 py-12">
         <LoadingSkeleton />
@@ -70,11 +173,11 @@ export default function Movie() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4 py-12">
       <MovieCard
-        movie={mockMovie}
+        movie={currentMovie.movie}
         onChangeMovie={handleChangeMovie}
         onChangeMood={handleChangeMood}
         onWatch={handleWatch}
-        isLoading={isLoading}
+        isLoading={getAnotherMovie.isPending}
       />
     </div>
   );
