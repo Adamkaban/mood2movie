@@ -21,6 +21,10 @@ function getTodayDate(): string {
 
 function getBannerState(): BannerState {
   try {
+    if (typeof window === 'undefined' || !window.localStorage) {
+      return { count: 0, date: getTodayDate() };
+    }
+    
     const stored = localStorage.getItem(STORAGE_KEY);
     if (!stored) return { count: 0, date: getTodayDate() };
     
@@ -38,11 +42,19 @@ function getBannerState(): BannerState {
 }
 
 function setBannerState(count: number): void {
-  const state: BannerState = {
-    count,
-    date: getTodayDate()
-  };
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  try {
+    if (typeof window === 'undefined' || !window.localStorage) {
+      return;
+    }
+    
+    const state: BannerState = {
+      count,
+      date: getTodayDate()
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    // Silently fail if localStorage is not available
+  }
 }
 
 export function AdBanner() {
