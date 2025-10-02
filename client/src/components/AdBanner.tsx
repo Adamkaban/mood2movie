@@ -1,24 +1,25 @@
 import { useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { X } from "lucide-react";
 
 export function AdBanner() {
+  const [location] = useLocation();
   const [isVisible, setIsVisible] = useState(false);
   const [isShown, setIsShown] = useState(false);
 
   useEffect(() => {
-    const dismissed = localStorage.getItem("adBannerDismissed");
+    setIsVisible(false);
+    setIsShown(false);
     
-    if (!dismissed) {
-      const showTimer = setTimeout(() => {
-        setIsShown(true);
-        setTimeout(() => {
-          setIsVisible(true);
-        }, 100);
-      }, 3000);
+    const showTimer = setTimeout(() => {
+      setIsShown(true);
+      setTimeout(() => {
+        setIsVisible(true);
+      }, 100);
+    }, 3000);
 
-      return () => clearTimeout(showTimer);
-    }
-  }, []);
+    return () => clearTimeout(showTimer);
+  }, [location]);
 
   const handleDismiss = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -26,7 +27,6 @@ export function AdBanner() {
     setIsVisible(false);
     setTimeout(() => {
       setIsShown(false);
-      localStorage.setItem("adBannerDismissed", "true");
     }, 300);
   };
 
