@@ -14,33 +14,33 @@ const latToRus: Record<string, string> = {
   'ch': 'ч', 'sh': 'ш', 'sch': 'щ', 'yu': 'ю', 'ya': 'я'
 };
 
-// Карта настроений для обратной конвертации (точное соответствие)
+// Карта настроений для обратной конвертации (точное соответствие slug -> настроение)
 const moodMap: Record<string, string> = {
-  'veseloe': 'Весёлое',
+  'vesyoloe': 'Весёлое',
   'smeshnoe': 'Смешное',
   'spokoynoe': 'Спокойное',
-  'romantichnoye': 'Романтичное',
-  'vlyublyonnoye': 'Влюблённое',
-  'teploye': 'Тёплое',
-  'vdohnovlyonnoye': 'Вдохновлённое',
-  'prazdnichnoye': 'Праздничное',
-  'energichnoye': 'Энергичное',
-  'motivirovannoye': 'Мотивированное',
-  'ambitsyoznoye': 'Амбициозное',
+  'romantichnoe': 'Романтичное',
+  'vlyublyonnoe': 'Влюблённое',
+  'tyoploe': 'Тёплое',
+  'vdohnovlyonnoe': 'Вдохновлённое',
+  'prazdnichnoe': 'Праздничное',
+  'energichnoe': 'Энергичное',
+  'motivirovannoe': 'Мотивированное',
+  'ambitsioznoe': 'Амбициозное',
   'drayvovoe': 'Драйвовое',
-  'zadumchivoye': 'Задумчивое',
-  'filosofskoye': 'Философское',
-  'dramatichnoye': 'Драматичное',
-  'poznavatelnoye': 'Познавательное',
-  'grustnoye': 'Грустное',
-  'napryazhyonnoye': 'Напряжённое',
-  'trevozhnoye': 'Тревожное',
-  'nostalgicheskoye': 'Ностальгическое',
-  'razdrazhyonnoye': 'Раздражённое',
-  'sonnoye': 'Сонное',
-  'bezumnoye': 'Безумное',
-  'meditativnoye': 'Медитативное',
-  'sluchaynoye': 'Случайное'
+  'zadumchivoe': 'Задумчивое',
+  'filosofskoe': 'Философское',
+  'dramatichnoe': 'Драматичное',
+  'poznavatelnoe': 'Познавательное',
+  'grustnoe': 'Грустное',
+  'napryazhyonnoe': 'Напряжённое',
+  'trevozhnoe': 'Тревожное',
+  'nostalgicheskoe': 'Ностальгическое',
+  'razdrazhyonnoe': 'Раздражённое',
+  'sonnoe': 'Сонное',
+  'bezumnoe': 'Безумное',
+  'meditativnoe': 'Медитативное',
+  'sluchaynoe': 'Случайное'
 };
 
 /**
