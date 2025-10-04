@@ -164,7 +164,7 @@ Preferred communication style: Simple, everyday language.
 - `vercel.json`: Routes, rewrites, CORS headers, output directory
 - `VERCEL_DEPLOYMENT_GUIDE.md`: Complete deployment instructions with domain setup
 - `client/public/robots.txt`: References production domain sitemap
-- `client/public/sitemap.xml`: All 12 mood pages indexed with mood2movie.ru URLs
+- `client/public/sitemap.xml`: All 24 mood pages with SEO-friendly transliterated URLs
 
 **Recent Changes (October 2, 2025):**
 - Added comprehensive SEO optimization for Yandex
@@ -195,3 +195,11 @@ Preferred communication style: Simple, everyday language.
   - Replaced all emojis with professional Lucide icons (Calendar, Clock, MapPin, Star, User, DollarSign, Award, TrendingUp)
   - Installed @vercel/node package for serverless deployment compatibility
   - Consistent TypeScript interfaces across shared/schema.ts, MovieCard.tsx, and movie.tsx
+- **SEO-Friendly Transliterated URLs (Oct 4, 2025):**
+  - Implemented human-readable URLs (ЧПУ) with Russian to English transliteration
+  - Changed URL format from `/movie?mood=Весёлое` to `/mood/vesyoloe`
+  - Created transliteration module (`lib/transliterate.ts`) with bidirectional conversion
+  - All 24 mood pages now use SEO-friendly paths (e.g., `/mood/romantichnoe`, `/mood/grustnoe`)
+  - Updated sitemap.xml with all transliterated URLs synchronized with routing logic
+  - Proper handling of special characters: ё→yo, ь→"" (removed)
+  - Vercel-compatible client-side routing with path parameters
