@@ -35,7 +35,7 @@ Preferred communication style: Simple, everyday language.
   - All premiere dates (world, Russia, digital releases)
   - Professional lucide icons (no emojis)
   - Sectioned layout with separators for readability
-- LoadingSkeleton: Animated placeholder during data fetching
+- LoadingSkeleton: Centered loading animation with rotating Film icon, gradient backdrop, and animated dots (CSS keyframes)
 - ErrorMessage: User-friendly error handling with retry capability
 
 **Routing:**
@@ -203,3 +203,11 @@ Preferred communication style: Simple, everyday language.
   - Updated sitemap.xml with all transliterated URLs synchronized with routing logic
   - Proper handling of special characters: ё→yo, ь→"" (removed)
   - Vercel-compatible client-side routing with path parameters
+- **Enhanced Loading Animation (Oct 4, 2025):**
+  - Redesigned LoadingSkeleton with centered layout (min-h-[70vh], flexbox)
+  - Added rotating Film icon from lucide-react (3s animation duration)
+  - Implemented gradient backdrop (indigo-500/20 → purple-500/20) with blur effect
+  - Enlarged text to text-2xl with pulsing animation (animate-pulse)
+  - Created CSS keyframes animation for loading dots (1.5s cycle: "" → "." → ".." → "...")
+  - Professional appearance with visual interest during API calls
+  - Fully Vercel-compatible (client-side only, no server dependencies)
