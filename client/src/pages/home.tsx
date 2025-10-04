@@ -14,7 +14,8 @@ export default function Home() {
   });
 
   const handleMoodSelect = (mood: string) => {
-    setLocation(`/movie?mood=${encodeURIComponent(mood)}`);
+    const moodSlug = mood.toLowerCase();
+    setLocation(`/mood/${encodeURIComponent(moodSlug)}`);
   };
 
   return (

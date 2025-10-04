@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'wouter';
+import { useLocation, useParams } from 'wouter';
 import { useQuery, useMutation } from '@tanstack/react-query';
 import { Popcorn } from 'lucide-react';
 import MovieCard from '@/components/MovieCard';
@@ -90,6 +90,7 @@ interface MovieResponse {
 
 export default function Movie() {
   const [, setLocation] = useLocation();
+  const params = useParams<{ moodName: string }>();
   const [currentMood, setCurrentMood] = useState<string>('');
   const [currentMovie, setCurrentMovie] = useState<MovieResponse | null>(null);
   
@@ -108,16 +109,17 @@ export default function Movie() {
 
   const [excludedIds, setExcludedIds] = useState<number[]>(getExcludedIds());
   
-  // Get mood from URL
+  // Get mood from URL params
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const mood = params.get('mood');
-    if (mood) {
+    const moodName = params.moodName;
+    if (moodName) {
+      // Capitalize first letter for API
+      const mood = moodName.charAt(0).toUpperCase() + moodName.slice(1);
       setCurrentMood(mood);
     } else {
       setLocation('/');
     }
-  }, [setLocation]);
+  }, [params.moodName, setLocation]);
 
   // Fetch movie recommendation (only runs once on mount)
   const { data, isLoading, error, refetch } = useQuery({
