@@ -7,6 +7,7 @@ import LoadingSkeleton from '@/components/LoadingSkeleton';
 import ErrorMessage from '@/components/ErrorMessage';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { MovieStructuredData } from '@/components/StructuredData';
+import { fromTranslit } from '@/lib/transliterate';
 
 interface Movie {
   id: number;
@@ -109,12 +110,12 @@ export default function Movie() {
 
   const [excludedIds, setExcludedIds] = useState<number[]>(getExcludedIds());
   
-  // Get mood from URL params
+  // Get mood from URL params (transliterated)
   useEffect(() => {
     const moodName = params.moodName;
     if (moodName) {
-      // Capitalize first letter for API
-      const mood = moodName.charAt(0).toUpperCase() + moodName.slice(1);
+      // Convert translit back to Russian
+      const mood = fromTranslit(moodName);
       setCurrentMood(mood);
     } else {
       setLocation('/');

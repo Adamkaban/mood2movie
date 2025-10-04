@@ -10,177 +10,177 @@
     <priority>1.0</priority>
   </url>
   
-  <!-- Страницы с настроениями (SEO-friendly URLs) -->
+  <!-- Страницы с настроениями (SEO-friendly URLs с транслитом) -->
   <url>
-    <loc>https://mood2movie.ru/mood/весёлое</loc>
+    <loc>https://mood2movie.ru/mood/veseloe</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/смешное</loc>
+    <loc>https://mood2movie.ru/mood/smeshnoe</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/спокойное</loc>
+    <loc>https://mood2movie.ru/mood/spokoynoe</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/романтичное</loc>
+    <loc>https://mood2movie.ru/mood/romantichnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/влюблённое</loc>
+    <loc>https://mood2movie.ru/mood/vlyublyonnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/тёплое</loc>
+    <loc>https://mood2movie.ru/mood/teploye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/вдохновлённое</loc>
+    <loc>https://mood2movie.ru/mood/vdohnovlyonnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/праздничное</loc>
+    <loc>https://mood2movie.ru/mood/prazdnichnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/энергичное</loc>
+    <loc>https://mood2movie.ru/mood/energichnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/мотивированное</loc>
+    <loc>https://mood2movie.ru/mood/motivirovannoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/амбициозное</loc>
+    <loc>https://mood2movie.ru/mood/ambitsyoznoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/драйвовое</loc>
+    <loc>https://mood2movie.ru/mood/drayvovoe</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/задумчивое</loc>
+    <loc>https://mood2movie.ru/mood/zadumchivoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/философское</loc>
+    <loc>https://mood2movie.ru/mood/filosofskoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/драматичное</loc>
+    <loc>https://mood2movie.ru/mood/dramatichnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/познавательное</loc>
+    <loc>https://mood2movie.ru/mood/poznavatelnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/грустное</loc>
+    <loc>https://mood2movie.ru/mood/grustnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/напряжённое</loc>
+    <loc>https://mood2movie.ru/mood/napryazhyonnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/тревожное</loc>
+    <loc>https://mood2movie.ru/mood/trevozhnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/ностальгическое</loc>
+    <loc>https://mood2movie.ru/mood/nostalgicheskoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/раздражённое</loc>
+    <loc>https://mood2movie.ru/mood/razdrazhyonnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/сонное</loc>
+    <loc>https://mood2movie.ru/mood/sonnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/безумное</loc>
+    <loc>https://mood2movie.ru/mood/bezumnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/медитативное</loc>
+    <loc>https://mood2movie.ru/mood/meditativnoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://mood2movie.ru/mood/случайное</loc>
+    <loc>https://mood2movie.ru/mood/sluchaynoye</loc>
     <lastmod>2025-10-04</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>

@@ -3,6 +3,7 @@ import { Popcorn } from 'lucide-react';
 import MoodGrid from '@/components/MoodGrid';
 import { usePageMeta } from '@/hooks/usePageMeta';
 import { WebsiteStructuredData } from '@/components/StructuredData';
+import { toTranslit } from '@/lib/transliterate';
 
 export default function Home() {
   const [, setLocation] = useLocation();
@@ -14,8 +15,8 @@ export default function Home() {
   });
 
   const handleMoodSelect = (mood: string) => {
-    const moodSlug = mood.toLowerCase();
-    setLocation(`/mood/${encodeURIComponent(moodSlug)}`);
+    const moodSlug = toTranslit(mood);
+    setLocation(`/mood/${moodSlug}`);
   };
 
   return (
